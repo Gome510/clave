@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clave — Editor de traducciones</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="fixes.css" />
+    <link rel="stylesheet" href="editor.css" />
+    <link rel="stylesheet" href="vscode.css" />
+    <link rel="stylesheet" href="context-menu.css" />
+    <link rel="stylesheet" href="tree-values.css" />
+    <link rel="stylesheet" href="compare-layout.css" />
+    <link rel="stylesheet" href="viewport-fit.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand"><span class="mark">K</span><strong>CLAVE</strong><span id="master-file-name" class="master-file-name">SIN MAESTRO</span></div>
+      <div class="header-actions"><button id="collapse-all" class="header-action" data-tip="Colapsar todos los objetos">⊟</button><button id="reset-master" class="header-action header-reset hidden" data-tip="Empezar de nuevo">↺</button><button id="open-translations" class="header-action" data-tip="Convertir traducciones">⇄</button><label class="header-compare" data-tip="Comparar con original"><input id="compare-toggle" type="checkbox" /><span>▱</span></label></div>
+    </header>
+    <main>
+      <section class="panel editor-panel">
+        <div class="panel-title"><div><h1>Maestro actual</h1><p id="master-status">Importa un JSON maestro para comenzar.</p></div></div>
+        <div id="editor-empty" class="empty"><div>El archivo maestro define la estructura final.<br /><small>Solo se admiten objetos y textos.</small></div><label class="primary file-button">Importar maestro<input id="master-input" type="file" accept="application/json,.json" /></label></div>
+        <div id="tree" class="tree" aria-label="Árbol maestro"></div>
+      </section>
+
+      <section id="original-panel" class="panel original-panel hidden">
+        <div class="panel-title"><div><h2>Original</h2><p>Solo lectura</p></div><button id="original-tree-toggle">Ver JSON</button></div>
+        <pre id="original-content"></pre>
+      </section>
+
+      <aside id="actions-dock" class="actions-panel hidden" aria-label="Barra de acciones">
+        <div class="toolbar-status" id="selection-status">Sin selección</div>
+        <div class="toolbar-buttons">
+          <button id="rename" class="tool" data-tip="Renombrar clave">✎</button><button id="new-key" class="tool" data-tip="Nueva clave">＋</button><button id="new-object" class="tool" data-tip="Nuevo objeto">▣</button><button id="delete" class="tool danger" data-tip="Eliminar selección">⌫</button>
+          <i></i><button id="cut" class="tool" data-tip="Cortar (⌘/Ctrl + X)">✂</button><button id="paste" class="tool" data-tip="Pegar en el objeto seleccionado (⌘/Ctrl + V)">▣</button>
+          <i></i><button id="toggle-search" class="tool" data-tip="Buscar y reemplazar claves">⌕</button><button id="toggle-format" class="tool" data-tip="Cambiar formato de claves">Aa</button>
+        </div>
+        <div id="search-popover" class="toolbar-popover hidden"><strong>Buscar y reemplazar claves</strong><input id="find-text" placeholder="Buscar, ej. STR_" /><input id="replace-text" placeholder="Reemplazar por (puede estar vacío)" /><label class="check"><input id="prefix-only" type="checkbox" checked /> Solo al inicio</label><button id="replace" class="primary">Aplicar</button></div>
+        <div id="format-popover" class="toolbar-popover hidden"><strong>Formato de claves</strong><select id="case-format"><option value="camel">camelCase</option><option value="pascal">PascalCase</option><option value="kebab">kebab-case</option><option value="snake">underscore_case</option></select><label class="check"><input id="all-keys" type="checkbox" /> Todas las claves</label><button id="format-keys" class="primary">Convertir</button></div>
+      </aside>
+    </main>
+    <dialog id="translations-modal" class="translations-modal">
+      <div class="modal-heading"><div><h2>Convertir traducciones</h2><p>Los textos se conservan al mover o renombrar. Las claves nuevas quedan vacías.</p></div><button id="close-translations" title="Cerrar">×</button></div>
+      <label class="primary file-button">Importar traducciones<input id="translation-input" type="file" accept="application/json,.json" multiple /></label>
+      <div id="translation-list" class="translation-list"></div>
+    </dialog>
+    <dialog id="modal"><form method="dialog"><h2 id="modal-title"></h2><p id="modal-text"></p><menu><button value="cancel">Cancelar</button><button id="modal-confirm" value="default" class="primary">Continuar</button></menu></form></dialog>
+    <template id="node-template"><div class="node"><div class="node-row" draggable="true"><button class="expand">⌄</button><span class="grip">⠿</span><span class="node-key"></span><span class="node-value"></span><span class="node-type"></span></div><div class="children"></div></div></template>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+/* El dock se comporta como un menú contextual y nunca se sale del viewport. */
+.actions-panel {
+  width: auto;
+  bottom: auto;
+  left: 0;
+  top: 0;
+  justify-content: initial;
+  border: 1px solid #333;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px #0009;
+}
+
+.master-file-name {
+  margin-left: 12px;
+  color: #9cdcfe;
+  font: 11px ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .04em;
+}
+
+.header-reset {
+  margin-left: 5px;
+  padding: 0;
+  width: 27px;
+  height: 27px;
+  color: #d4d4d4;
+  font-size: 16px;
+}
+
+.header-reset:hover {
+  background: #c42b1c !important;
+  color: #fff !important;
+}
+
+.header-reset.hidden,
+.empty.hidden,
+.editor-panel > .panel-title {
+  display: none;
+}
+
+.empty {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+}
+
+dialog#modal {
+  background: #252526;
+  color: #d4d4d4;
+  border: 1px solid #454545;
+}
+
+#modal-confirm.reset-confirm {
+  background: #c42b1c;
+  border-color: #c42b1c;
+  color: #fff;
+}
+
+dialog#translations-modal {
+  width: min(620px, calc(100vw - 32px));
+  padding: 0;
+  background: #252526;
+  color: #d4d4d4;
+  border: 1px solid #454545;
+}
+
+.translations-modal::backdrop { background: #000a; }
+.modal-heading { display:flex; justify-content:space-between; gap:20px; padding:18px; border-bottom:1px solid #444; }
+.modal-heading h2 { margin:0; font:14px ui-monospace, SFMono-Regular, Menlo, monospace; }
+.modal-heading p { margin:6px 0 0; color:#aaa; font-size:12px; }
+.modal-heading button { border:0; background:transparent; color:#ccc; font-size:22px; line-height:18px; }
+.modal-heading button:hover { background:#c42b1c; color:#fff; }
+.translations-modal > .file-button { display:inline-block; margin:16px 18px; }
+.translations-modal .translation-list { padding:0 18px 18px; }
+
+header .header-action,
+header .header-compare {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 27px;
+  padding: 0;
+  font-size: 16px;
+}
+
+.header-compare input { position: absolute; opacity: 0; }
+.header-compare span { color: #d4d4d4; }
+.header-compare:has(input:checked) { background: #094771; }
+
+header [data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  z-index: 30;
+  transform: translateX(-50%) translateY(-3px);
+  width: max-content;
+  padding: 5px 7px;
+  border-radius: 3px;
+  background: #10131c;
+  color: #fff;
+  font: 12px/1.2 Inter, sans-serif;
+  opacity: 0;
+  pointer-events: none;
+  transition: .12s;
+}
+
+header [data-tip]:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 760px) {
+  .actions-panel { max-width: calc(100vw - 16px); }
+}

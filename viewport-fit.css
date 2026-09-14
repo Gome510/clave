@@ -1,0 +1,26 @@
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+main,
+.panel,
+.tree,
+.node-row,
+.node-key,
+.node-value {
+  min-width: 0;
+}
+
+.node-value {
+  flex: 1 1 auto;
+  max-width: none;
+}
+
+.node-key {
+  flex: 0 0 auto;
+  overflow: visible;
+  text-overflow: clip;
+  white-space: nowrap;
+}

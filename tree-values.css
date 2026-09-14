@@ -1,0 +1,18 @@
+/* La profundidad actúa como sintaxis visual del árbol. */
+.node-row.level-0 .node-key { color: #4fc1ff; }
+.node-row.level-1 .node-key { color: #dcdcaa; }
+.node-row.level-2 .node-key { color: #ce9178; }
+.node-row.level-3 .node-key { color: #c586c0; }
+.node-row.level-4 .node-key,
+.node-row.level-5 .node-key { color: #4ec9b0; }
+
+.node-value {
+  margin-left: 5px;
+  color: #6a9955;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: min(46vw, 460px);
+}
+
+.node-row.selected .node-value { color: #b5cea8; }

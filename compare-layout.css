@@ -1,0 +1,15 @@
+/* El maestro ocupa todo el espacio hasta que se abra la comparación. */
+main {
+  grid-template-columns: minmax(0, 1fr);
+  height: calc(100vh - 36px);
+  min-height: 0;
+}
+
+main:has(.original-panel:not(.hidden)) {
+  grid-template-columns: minmax(450px, 1fr) minmax(300px, .72fr);
+}
+
+.tree,
+.original-panel pre {
+  max-height: calc(100vh - 36px);
+}

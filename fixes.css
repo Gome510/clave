@@ -1,0 +1,14 @@
+/* Las claves de la raíz son hermanas, no descendientes. */
+.tree > .node {
+  margin-left: 0;
+}
+
+/* Solo los nodos raíz no llevan sangría. El primer hijo también es hijo. */
+.children > .node:first-child {
+  margin-left: 20px;
+}
+
+/* Cada hijo de un mismo objeto tiene la misma profundidad visual. */
+.children > .node {
+  margin-left: 20px;
+}

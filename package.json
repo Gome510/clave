@@ -1,0 +1,6 @@
+{
+  "name": "translation-structure-editor",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": { "start": "npx serve .", "test": "node --check app.js" }
+}
